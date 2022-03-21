@@ -206,3 +206,58 @@ setTimeout(() => {
 console.log('Second Line');
 
 console.log('***** End Setting a Timeout with CTO Checkpoint 11*****');
+
+
+console.log('***** .call() Checkpoint 12*****');
+
+const  person12 = {
+  name_first:"Joel",
+  name_last: "Thomas",
+
+  printFullName: function(){
+    console.log(this.name_first + "  " +this.name_last); // you need this keyword inside 
+  }
+}
+
+const person12_a = {
+  name_first:"Abel",
+  name_last: "Geo",
+}
+// borrowing fuction from person12 object using call
+person12.printFullName.call(person12_a);
+//person12.printFullName font call like person12.printFullName() pass the new reference object to call method
+
+
+//Normally we dont keep methids inside a function but outside
+const printLastandFirsttName = function(){
+  console.log(this.name_last + "  " +this.name_first); // you need this keyword inside 
+}
+printLastandFirsttName.call(person12);
+
+
+
+//Nirmally we dont keep methids inside a function but outside
+const printLastandFirsttNameandLocation = function(Location){
+  console.log(this.name_last + "  " +this.name_first+ " from " + Location); // you need this keyword inside 
+}
+
+printLastandFirsttNameandLocation.call(person12_a, "MVLK")
+
+
+
+
+
+
+
+
+
+
+
+console.log('***** Currying Checkpoint 15*****');
+
+
+
+
+
+
+
