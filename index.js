@@ -228,7 +228,7 @@ person12.printFullName.call(person12_a);
 //person12.printFullName font call like person12.printFullName() pass the new reference object to call method
 
 
-//Normally we dont keep methids inside a function but outside
+//Normally we dont keep methods inside a function but outside...
 const printLastandFirsttName = function(){
   console.log(this.name_last + "  " +this.name_first); // you need this keyword inside 
 }
@@ -237,15 +237,68 @@ printLastandFirsttName.call(person12);
 
 
 //Nirmally we dont keep methids inside a function but outside
-const printLastandFirsttNameandLocation = function(Location){
-  console.log(this.name_last + "  " +this.name_first+ " from " + Location); // you need this keyword inside 
+const printLastandFirsttNameandLocation = function(Location, district){
+  console.log(this.name_last + "  " +this.name_first+ " from " + Location + " from " +district); // you need this keyword inside 
+} 
+
+
+/*const printLastandFirsttNameandLocation = (Location, district) => {
+  console.log(this.name_last + "  " +this.name_first+ " from " + Location + " from " +district); // you need this keyword inside;
+}; */
+
+
+
+printLastandFirsttNameandLocation.call(person12_a, "MVLK", "Alleppy")
+
+
+console.log('***** .Apply() Checkpoint 13*****');
+
+//Same as call but arguemts after this is apssed as an array list
+
+printLastandFirsttNameandLocation.apply(person12_a, ["APPLYMETHOD", "Alleppy"])
+
+
+console.log('***** .Apply() Checkpoint 15*****');
+
+
+// bind returns a copy/reference if that method bound to the onject passed.. thinfs in the fuction will be executed w.r.t the onject when it is called
+
+let boundedMethod = printLastandFirsttName.bind(person12_a)
+
+console.log('boundedMethod', boundedMethod); // function  reference returned  on the console.
+// now calling it
+boundedMethod();
+
+
+
+
+console.log('***** Currying Checkpoint 15*****');
+
+
+let multiply = function(x, y){
+  console.log(x*y);
 }
 
-printLastandFirsttNameandLocation.call(person12_a, "MVLK")
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
 
 
 
