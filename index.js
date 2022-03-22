@@ -195,6 +195,7 @@ getTimer(); // the startTime value is preserved to be reused in the function ret
 
 console.log('***** Begin Setting a Timeout with CTO  Checkpoint 10******');
 
+/*
 function mytimeoutfunction() {
   console.log('Mytimeout Function');
 }
@@ -203,102 +204,93 @@ setTimeout(() => {
   mytimeoutfunction();
 }, 7000);
 
-console.log('Second Line');
+console.log('Second Line'); */
 
 console.log('***** End Setting a Timeout with CTO Checkpoint 11*****');
 
-
 console.log('***** .call() Checkpoint 12*****');
 
-const  person12 = {
-  name_first:"Joel",
-  name_last: "Thomas",
+const person12 = {
+  name_first: 'Joel',
+  name_last: 'Thomas',
 
-  printFullName: function(){
-    console.log(this.name_first + "  " +this.name_last); // you need this keyword inside 
-  }
-}
+  printFullName: function () {
+    console.log(this.name_first + '  ' + this.name_last); // you need this keyword inside
+  },
+};
 
 const person12_a = {
-  name_first:"Abel",
-  name_last: "Geo",
-}
+  name_first: 'Abel',
+  name_last: 'Geo',
+};
 // borrowing fuction from person12 object using call
 person12.printFullName.call(person12_a);
 //person12.printFullName font call like person12.printFullName() pass the new reference object to call method
 
-
 //Normally we dont keep methods inside a function but outside...
-const printLastandFirsttName = function(){
-  console.log(this.name_last + "  " +this.name_first); // you need this keyword inside 
-}
+const printLastandFirsttName = function () {
+  console.log(this.name_last + '  ' + this.name_first); // you need this keyword inside
+};
 printLastandFirsttName.call(person12);
 
-
-
 //Nirmally we dont keep methids inside a function but outside
-const printLastandFirsttNameandLocation = function(Location, district){
-  console.log(this.name_last + "  " +this.name_first+ " from " + Location + " from " +district); // you need this keyword inside 
-} 
-
+const printLastandFirsttNameandLocation = function (Location, district) {
+  console.log(
+    this.name_last +
+      '  ' +
+      this.name_first +
+      ' from ' +
+      Location +
+      ' from ' +
+      district
+  ); // you need this keyword inside
+};
 
 /*const printLastandFirsttNameandLocation = (Location, district) => {
   console.log(this.name_last + "  " +this.name_first+ " from " + Location + " from " +district); // you need this keyword inside;
 }; */
 
-
-
-printLastandFirsttNameandLocation.call(person12_a, "MVLK", "Alleppy")
-
+printLastandFirsttNameandLocation.call(person12_a, 'MVLK', 'Alleppy');
 
 console.log('***** .Apply() Checkpoint 13*****');
 
 //Same as call but arguemts after this is apssed as an array list
 
-printLastandFirsttNameandLocation.apply(person12_a, ["APPLYMETHOD", "Alleppy"])
-
+printLastandFirsttNameandLocation.apply(person12_a, ['APPLYMETHOD', 'Alleppy']);
 
 console.log('***** .Apply() Checkpoint 15*****');
 
-
 // bind returns a copy/reference if that method bound to the onject passed.. thinfs in the fuction will be executed w.r.t the onject when it is called
 
-let boundedMethod = printLastandFirsttName.bind(person12_a)
+let boundedMethod = printLastandFirsttName.bind(person12_a);
 
 console.log('boundedMethod', boundedMethod); // function  reference returned  on the console.
 // now calling it
 boundedMethod();
 
-
-
-
 console.log('***** Currying Checkpoint 15*****');
-
-
 
 // Can be acheived through bind and closures
 
 //BINDING
 //Same as binding but in this case you only pass partially the parameters for binding
 // and later call the method retunred with complete parameters
-let multiply = function(x, y){
-  console.log('x :', x+'and y :'+ y);
-  console.log('x * y:', x*y);
-  return x*y
-}
+let multiply = function (x, y) {
+  console.log('x :', x + 'and y :' + y);
+  console.log('x * y:', x * y);
+  return x * y;
+};
 
 let multiplyby2 = multiply.bind(this, 2); // returns a copy/ref
 
 multiplyby2(2); // rest of the oarameters passed
 
-
-
 //COSURES way of Currying
 const multiplyByClosure = (x) => {
   return (y) => {
-    let value = x*y;
+    let value = x * y;
     console.log('Multipleied Value', value);
-  }; 
+  };
 };
 
 let callertoMultiply = multiplyByClosure(5);
@@ -307,13 +299,53 @@ callertoMultiply(5);
 
 console.log('***** End of Currying Checkpoint 16*****');
 
+console.log('***** IIFE** Checkpoint 17*****');
 
+//IIFE - Immediately invoked Function Expression;
 
+//Used to
+// 1.reduce the scope of the function and
+// 2.to reduce the number of lines if the functon had to be executed
+(() => {
+  console.log('Hi Immediately invoked Function Expression ');
+})();
 
+(function () {
+  console.log('Hi Immediately invoked Function Expression ');
+})();
 
+console.log('***** Spread operation** Checkpoint 17*****');
 
+const array1 = [1, 2, 3];
+const array2 = [4, 5, 6];
 
+const combined = [...array1, ...array2]; //. is equal to array1.concat(array2)
+console.log('combined array', combined);
+console.log('combined array usinf concat', array1.concat(array2));
 
+const combined2 = [...array1, '100', ...array2, '200'];
+const combined3 = [...array1, 100, ...array2, 200];
+console.log('combined array', combined2);
+console.log('combined array', combined3);
 
+const cloneArray = [...array1];
+console.log('Cloned Array ', cloneArray);
 
+const personnameobj = {
+  per_name: ' Sachin Tendulkar ',
+};
 
+const roleObj = {
+  role: ' Cricketer ',
+};
+
+const Person = { ...personnameobj, ...roleObj };
+
+console.log('Combined Person', Person);
+const FullPersonObj = { ...personnameobj, ...roleObj, Team: 'India' }.console // redux state management uses this
+console.log('FullPersonObj', FullPersonObj);
+
+const clonePersonObj = { ...FullPersonObj };
+console.log('clonePersonObj', clonePersonObj);
+
+console.log('***** End of ***Spread operation** Checkpoint 17*****');
