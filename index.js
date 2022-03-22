@@ -275,38 +275,41 @@ boundedMethod();
 console.log('***** Currying Checkpoint 15*****');
 
 
+
+// Can be acheived through bind and closures
+
+//BINDING
+//Same as binding but in this case you only pass partially the parameters for binding
+// and later call the method retunred with complete parameters
 let multiply = function(x, y){
-  console.log(x*y);
+  console.log('x :', x+'and y :'+ y);
+  console.log('x * y:', x*y);
+  return x*y
 }
 
+let multiplyby2 = multiply.bind(this, 2); // returns a copy/ref
+
+multiplyby2(2); // rest of the oarameters passed
+
+
+
+//COSURES way of Currying
+const multiplyByClosure = (x) => {
+  return (y) => {
+    let value = x*y;
+    console.log('Multipleied Value', value);
+  }; 
+};
+
+let callertoMultiply = multiplyByClosure(5);
+console.log('callertoMultiply', callertoMultiply);
+callertoMultiply(5);
+
+console.log('***** End of Currying Checkpoint 16*****');
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-
-
-
-
-
-
-console.log('***** Currying Checkpoint 15*****');
 
 
 
