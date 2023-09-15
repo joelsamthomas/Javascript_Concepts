@@ -153,7 +153,31 @@ function sampleFunction7(num) {
   return num + 100;
 }
 
+
+let cache = {};
 const memoizedFunction = (num) => {
+
+
+  if (num in cache) {
+    console.log('Number from Cache');
+    console.log('cache[num]', cache[num]);
+
+  } else {
+    console.log('Uncached value');
+    let val = num + 256;
+    cache[num] = val;
+    return val;
+  }
+};
+
+
+console.log(memoizedFunction(25))
+console.log(memoizedFunction(25))
+console.log(memoizedFunction(25))
+
+
+
+const memoizedFunction2 = (num) => {
   let cache = {};
 
   if (num in cache) {
